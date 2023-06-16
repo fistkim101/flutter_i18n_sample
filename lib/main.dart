@@ -1,30 +1,31 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:i18n_sample/home_screen.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [
+        Locale('en'),
+        Locale('ko'),
+      ],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('ko'),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       title: 'Localizations Sample App',
-      // localizationsDelegates: [
-      //   AppLocalizations.delegate,
-      //   GlobalMaterialLocalizations.delegate, // GlobalMaterialLocalizations.delegate provides localized strings and other values for the Material Components library.
-      //   GlobalWidgetsLocalizations.delegate, // GlobalWidgetsLocalizations.delegate defines the default text direction, either left-to-right or right-to-left, for the widgets library.
-      //   GlobalCupertinoLocalizations.delegate,
-      // ],
-      // supportedLocales: [
-      //   Locale('en'), // English
-      //   Locale('es'), // Spanish
-      // ],
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      locale: Locale('es', ''),
       home: HomeScreen(),
     );
   }

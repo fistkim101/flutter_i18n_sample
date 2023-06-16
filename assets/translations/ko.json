@@ -1,0 +1,10 @@
+{
+  "msg":"{} 은 {} 로 만들어졌다.",
+  "msg_named":"Easy localization 은 {lang} 라는 언어로 만들어졌다.",
+  "msg_mixed":"{} 은 {lang} 라는 언어로 만들어졌다.",
+  "gender":{
+    "male":"안녕 남자 ;) {}",
+    "female":"안녕 여자 :) {}",
+    "other":"안녕 {}"
+  }
+}

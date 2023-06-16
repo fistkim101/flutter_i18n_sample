@@ -9,31 +9,30 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final Locale _koLocale = const Locale('ko');
   final Locale _enLocale = const Locale('en');
-  bool _isKo = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // title: Text('appBarTitle'),
         title: const Text('msg').tr(args: ['Easy localization', 'Dart']),
         actions: [
           IconButton.outlined(
             onPressed: () {
-              if (_isKo) {
-                context.setLocale(_enLocale);
-                _isKo = !_isKo;
-              } else {
-                context.setLocale(_koLocale);
-                _isKo = !_isKo;
-              }
+              context.setLocale(_enLocale);
+            },
+            icon: const Icon(Icons.stadium),
+          ),
+          IconButton.outlined(
+            onPressed: () {
+              context.setLocale(_koLocale);
             },
             icon: const Icon(Icons.sailing),
           )
         ],
       ),
       body: Center(
-        child: const Text('msg_named').tr(namedArgs: {'lang': 'Dart'}),
+        // child: const Text('msg_named').tr(namedArgs: {'lang': 'Dart'}),
+        child: Text('msg_named'.tr(namedArgs: {'lang': 'Dart'})),
       ),
     );
   }
